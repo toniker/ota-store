@@ -1,0 +1,238 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { background: #c5ccd4; }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  padding-bottom: calc(49px + env(safe-area-inset-bottom));
+}
+[hidden] { display: none !important; }
+button { font-family: inherit; }
+
+/* The blue-grey navigation bar with its segmented control. */
+.navbar {
+  position: sticky; top: 0; z-index: 2;
+  padding: calc(env(safe-area-inset-top) + 7px) 8px 7px;
+  background: linear-gradient(#b0bccd, #889bb3 50%, #8195af 50%, #6d84a2);
+  border-bottom: 1px solid #2d3642;
+  box-shadow: inset 0 1px 0 #cdd5df;
+}
+.segmented {
+  display: flex; max-width: 480px; margin: 0 auto;
+  border: 1px solid #3a4a62; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,.35);
+}
+.segmented button {
+  flex: 1; height: 30px; margin: 0; padding: 0 4px;
+  font: bold 13px "Helvetica Neue", Helvetica, sans-serif; color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.45);
+  background: linear-gradient(#a3b2c6, #7d91ad 50%, #6f86a5 50%, #6880a0);
+  border: 0; border-left: 1px solid #3a4a62; cursor: pointer;
+}
+.segmented button:first-child { border-left: 0; }
+.segmented button[aria-pressed="true"] {
+  background: linear-gradient(#6a8bc4, #3e65a8 50%, #2c579d 50%, #2a5598);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.35);
+}
+
+/* The detail view's bar: a centred title and the pointed back button. The
+   button's shape is a 9-slice image, so the point keeps its angle at any width. */
+.navbar.titled { display: flex; align-items: center; min-height: calc(env(safe-area-inset-top) + 44px); }
+.navbar h1 {
+  flex: 1; min-width: 0; margin: 0 8px; text-align: center;
+  font: bold 20px "Helvetica Neue", Helvetica, sans-serif; color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.navbar.titled::after { content: ""; flex: none; width: var(--back-width, 0); }
+.back {
+  flex: none; max-width: 40%; height: 30px; margin: 0; padding: 0 3px 1px 0;
+  font: bold 12px "Helvetica Neue", Helvetica, sans-serif; color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.45);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  background: none; border-style: solid; border-width: 0 6px 0 13px; cursor: pointer;
+  border-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='30'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2390a5c1'/><stop offset='.5' stop-color='%23627fa6'/><stop offset='.5' stop-color='%23506f9a'/><stop offset='1' stop-color='%23486793'/></linearGradient></defs><path d='M12 .5H45A4.5 4.5 0 0 1 49.5 5V25A4.5 4.5 0 0 1 45 29.5H12Q11 29.5 10.3 28.7L1.3 16.3Q.5 15 1.3 13.7L10.3 1.3Q11 .5 12 .5Z' fill='url(%23g)' stroke='%232f3f57'/><path d='M12 1.5H45A3.5 3.5 0 0 1 48.5 5' fill='none' stroke='%23ffffff' stroke-opacity='.25'/></svg>") 0 6 0 13 fill / 0 6px 0 13px stretch;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
+}
+.back:active { filter: brightness(.8); }
+
+/* The list: grey rows with a light top edge and a dark bottom one. */
+ul { list-style: none; margin: 0; padding: 0; }
+#apps > li {
+  display: flex; align-items: center; gap: 10px;
+  min-height: 88px; padding: 10px 8px 10px 10px;
+  background: linear-gradient(#c4c7cc, #b5b8bd);
+  border-top: 1px solid #d9dbde; border-bottom: 1px solid #8a8d92;
+  cursor: pointer;
+}
+#apps > li:nth-child(even of :not([hidden])) { background: linear-gradient(#b9bcc1, #abaeb3); }
+
+/* Rounded icons with the glass shine over their top half. */
+.icon {
+  position: relative; flex: none; width: 57px; height: 57px;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,.55);
+  background: #4a78c2;
+}
+.icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.icon::after {
+  content: ""; position: absolute; left: -10%; right: -10%; top: -40%; height: 85%;
+  border-radius: 0 0 50% 50% / 0 0 22% 22%;
+  background: linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.12));
+}
+.icon .letter {
+  display: grid; place-items: center; height: 100%;
+  font: bold 30px "Helvetica Neue", Helvetica, sans-serif; color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+}
+
+.info { flex: 1; min-width: 0; }
+.info > div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.maker { font-size: 13px; font-weight: bold; color: #4c4f54; text-shadow: 0 1px 0 rgba(255,255,255,.45); }
+.name { font-size: 18px; font-weight: bold; color: #000; margin: 1px 0; text-shadow: 0 1px 0 rgba(255,255,255,.45); }
+.detail { font-size: 12px; color: #4c4f54; }
+.detail.problem { color: #9e1a20; white-space: normal; }
+
+/* The price, then the green install button once it's tapped, then a
+   spinner while the app builds. A state class on the row (or the detail
+   header, or a stored build) picks which one shows. */
+.buy { flex: none; display: grid; align-items: center; justify-items: end; }
+/* They share one spot, so the button can grow out of the price and shrink back into it. */
+.buy > * { grid-area: 1 / 1; }
+.buy > .chevron { grid-area: 1 / 2; margin-left: 6px; }
+.price {
+  font: bold 13px "Helvetica Neue", Helvetica, sans-serif; color: #3d4045;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  background: none; border: 0; padding: 8px 0; cursor: pointer;
+  transition: opacity .2s ease .05s;
+}
+.price:disabled { color: #8d9096; cursor: default; }
+.install {
+  padding: 5px 9px; border-radius: 4px; cursor: pointer;
+  /* Hidden, it's clipped to its right end, where the price is: it opens leftwards from there. */
+  opacity: 0; visibility: hidden; pointer-events: none; clip-path: inset(0 0 0 62% round 4px);
+  transition: clip-path .25s ease, opacity .2s ease, visibility 0s .25s;
+  font: bold 12px "Helvetica Neue", Helvetica, sans-serif; color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+  background: linear-gradient(#8bd16a, #5aae38 50%, #4a9f28 50%, #3f9420);
+  border: 1px solid #2d6b16; box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 1px 0 rgba(255,255,255,.4);
+}
+.chevron { width: 9px; height: 14px; flex: none; }
+.armed .price, .ready .price, .failed .price { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s ease, visibility 0s .15s; }
+.armed .install, .ready .install, .failed .install {
+  opacity: 1; visibility: visible; pointer-events: auto; clip-path: inset(0 round 4px);
+  transition: clip-path .25s ease, opacity .15s ease, visibility 0s;
+}
+@media (prefers-reduced-motion: reduce) { .price, .install { transition: none !important; } }
+.failed .install {
+  background: linear-gradient(#f08a8a, #d8434a 50%, #c92d35 50%, #bb2129); border-color: #7d1218;
+}
+.failed .detail { color: #9e1a20; font-weight: bold; white-space: normal; }
+
+/* The activity indicator: twelve bars, the lit one going round. */
+.spinner {
+  display: none; width: 20px; height: 20px; margin: 0 4px;
+  background: conic-gradient(from 0deg, rgba(60,63,68,.15), rgba(60,63,68,.95));
+  -webkit-mask: repeating-conic-gradient(#000 0 18deg, transparent 18deg 30deg),
+                radial-gradient(circle, transparent 4px, #000 4.5px);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+  border-radius: 50%; animation: spin 1s steps(12) infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.building .price, .building .install { visibility: hidden; pointer-events: none; transition: none; }
+.building .spinner { display: inline-block; }
+
+/* The blue progress bar under the name while it builds. */
+.progress {
+  display: none; height: 9px; margin-top: 4px; border-radius: 5px; overflow: hidden;
+  border: 1px solid #5d6168; background: linear-gradient(#e9eaec, #c9cbcf);
+}
+.progress div {
+  height: 100%; width: 40%; border-radius: 4px;
+  background: linear-gradient(#9cc9ff, #3d8ff2 50%, #2a7be6 50%, #2a73d6);
+  animation: sweep 1.6s ease-in-out infinite alternate;
+}
+@keyframes sweep { from { margin-left: 0; } to { margin-left: 60%; } }
+.building .progress { display: block; }
+
+.empty { padding: 40px 20px; text-align: center; font-size: 16px; font-weight: bold; color: #4c4f54;
+         text-shadow: 0 1px 0 rgba(255,255,255,.5); }
+
+/* The detail view: a header like a list row, then grouped tables on the
+   pinstriped background of iOS 5's grouped views. */
+body.in-detail {
+  background: repeating-linear-gradient(90deg, #c5ccd4 0 5px, #cbd2d8 5px 7px);
+}
+.hero {
+  display: flex; align-items: flex-start; gap: 12px; padding: 14px 10px 14px 12px;
+  background: linear-gradient(#d2d5d9, #b9bcc1);
+  border-bottom: 1px solid #8a8d92; box-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.hero .icon { width: 72px; height: 72px; border-radius: 13px; }
+.hero .icon .letter { font-size: 38px; }
+.hero .name { white-space: normal; font-size: 17px; line-height: 1.2; margin: 3px 0 2px; }
+.hero .maker { font-weight: normal; font-size: 12px; }
+.hero .detail { white-space: normal; margin-top: 4px; }
+.hero .buy { align-self: center; }
+
+.group { margin: 0 9px 22px; }
+.group:first-child { margin-top: 18px; }
+.group h2 {
+  margin: 0 11px 7px; font: bold 17px "Helvetica Neue", Helvetica, sans-serif; color: #4c566c;
+  text-shadow: 0 1px 0 #fff;
+}
+.cells {
+  background: #fff; border: 1px solid #a7aaae; border-radius: 9px; overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,.7);
+}
+.cell {
+  display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px;
+  font-size: 15px; color: #000; border-top: 1px solid #d9d9d9;
+}
+.cell:first-child { border-top: 0; }
+.cell .label { flex: none; font-weight: bold; }
+.cell .value { flex: 1; min-width: 0; text-align: right; color: #385487; overflow-wrap: anywhere; }
+.cell .text { flex: 1; min-width: 0; }
+.cell .title { font-weight: bold; }
+.cell .sub { margin-top: 2px; font-size: 12px; color: #7a7e85; overflow-wrap: anywhere; }
+.cell .commit { font-size: 14px; overflow-wrap: anywhere; }
+.cell .price { text-shadow: none; color: #385487; }
+.cell .expired { flex: none; font-size: 13px; font-weight: bold; color: #8d9096; }
+.cell.link, .cell.action { cursor: pointer; }
+.cell.link:active, .cell.action:active { background: linear-gradient(#058cf5, #015fe6); color: #fff; }
+.cell.action { justify-content: center; font-weight: bold; color: #324f85; }
+.cell.action.disabled { color: #a0a4aa; pointer-events: none; }
+.note {
+  margin: 8px 11px 0; font-size: 13px; color: #4c566c; text-align: center; text-shadow: 0 1px 0 #fff;
+}
+.log {
+  margin: 0; padding: 10px; overflow-x: hidden;
+  font: 11px/1.4 Menlo, "SF Mono", monospace; color: #1d1f22;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* The black glossy tab bar. */
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2;
+  display: flex; justify-content: center;
+  padding: 2px 2px env(safe-area-inset-bottom);
+  /* The gloss covers the 47px bar only; the home indicator's inset below continues its black half. */
+  background: #000 linear-gradient(#3b3b3b, #1c1c1c 50%, #050505 50%, #000) no-repeat 0 0 / 100% 47px;
+  border-top: 1px solid #000; box-shadow: inset 0 1px 0 #555;
+}
+.tab {
+  position: relative; flex: 1; max-width: 96px; height: 45px; margin: 0 1px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 3px;
+  font: bold 10px "Helvetica Neue", Helvetica, sans-serif; color: #999;
+  background: none; border: 0; border-radius: 3px; cursor: pointer;
+}
+.tab svg { width: 30px; height: 30px; margin-bottom: 1px; fill: #8a8a8a; }
+.tab[aria-pressed="true"] { color: #fff; background: rgba(255,255,255,.14); }
+.tab[aria-pressed="true"] svg { fill: url(#tabBlue); }
+.badge {
+  position: absolute; top: 0; right: 18px; min-width: 20px; height: 20px; padding: 0 6px;
+  border-radius: 10px; border: 2px solid #fff;
+  font: bold 12px/16px "Helvetica Neue", Helvetica, sans-serif; color: #fff; text-align: center;
+  background: linear-gradient(#f58a8a, #d8131b 50%, #c40a12);
+  box-shadow: 0 1px 2px rgba(0,0,0,.6);
+}

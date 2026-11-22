@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6d84a2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Apps">
+<title>Apps</title>
+<link rel="icon" type="image/svg+xml" href="/static/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="tabBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe6ff"/>
+      <stop offset="0.5" stop-color="#3ea8ff"/>
+      <stop offset="1" stop-color="#1a73d9"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<section id="list-view">
+  <header class="navbar">
+    <div class="segmented" role="group" aria-label="Sort">
+      <button type="button" data-sort="date" aria-pressed="true">New</button>
+      <button type="button" data-sort="name" aria-pressed="false">A–Z</button>
+      <button type="button" data-sort="size" aria-pressed="false">Largest</button>
+    </div>
+  </header>
+  <ul id="apps"></ul>
+  <p class="empty" id="empty" hidden>Loading…</p>
+</section>
+
+<section id="detail-view" hidden>
+  <header class="navbar titled">
+    <button type="button" class="back" id="back">Featured</button>
+    <h1 id="detail-title"></h1>
+  </header>
+  <div id="detail"></div>
+</section>
+
+<nav class="tabbar">
+  <button type="button" class="tab" data-tab="all" aria-pressed="true">
+    <svg viewBox="0 0 30 30"><path d="M15 2l3.9 8.3 9.1 1.1-6.7 6.2 1.8 9L15 22.1 6.9 26.6l1.8-9L2 11.4l9.1-1.1z"/></svg>
+    Featured
+  </button>
+  <button type="button" class="tab" data-tab="updates" aria-pressed="false">
+    <svg viewBox="0 0 30 30"><path d="M15 2a13 13 0 1 0 0 26 13 13 0 0 0 0-26zm0 3a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm-2 4v8H9l6 7 6-7h-4V9z"/></svg>
+    Updates
+    <span class="badge" id="badge" hidden></span>
+  </button>
+</nav>
+
+<template id="buy">
+  <div class="buy">
+    <button type="button" class="price">FREE</button>
+    <button type="button" class="install">INSTALL</button>
+    <span class="spinner" aria-label="Building"></span>
+  </div>
+</template>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6fc3ff"/>
+      <stop offset="0.5" stop-color="#2a8cf0"/>
+      <stop offset="1" stop-color="#0b4fb8"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="tray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d6e6fb"/>
+    </linearGradient>
+    <clipPath id="round"><rect width="180" height="180" rx="40"/></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="180" height="180" fill="url(#body)"/>
+    <!-- A down arrow into a tray: get an app. -->
+    <g fill="url(#tray)" stroke="#0a3f8f" stroke-opacity="0.35" stroke-width="3" stroke-linejoin="round">
+      <path d="M76 34 h28 v46 h22 l-36 40 l-36 -40 h22 z"/>
+      <path d="M36 112 h16 v20 h76 v-20 h16 v36 h-108 z"/>
+    </g>
+    <!-- The glass shine over the top half. -->
+    <path d="M0 0 h180 v78 c-40 16 -140 16 -180 0 z" fill="url(#gloss)"/>
+  </g>
+  <rect x="1.5" y="1.5" width="177" height="177" rx="39" fill="none" stroke="#000" stroke-opacity="0.25" stroke-width="3"/>
+</svg>
