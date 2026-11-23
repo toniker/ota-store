@@ -1,9 +1,8 @@
 # ota-store
 
-Install the iOS app your coding agent just changed. Open the store on your
+Install the iOS app your coding agent just updated. Open the store on your
 iPhone and tap Install. Your Mac builds the working copy, including uncommitted
-edits, and reuses the last build when the source hasn't changed. Your team can
-try changes on a phone without a TestFlight upload.
+edits, and reuses the last build when the source hasn't changed. You can keep the immediate feedback loop even when you're away from your Mac
 
 ## Screenshots
 
