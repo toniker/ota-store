@@ -5,6 +5,13 @@ iPhone and tap Install. Your Mac builds the working copy, including uncommitted
 edits, and reuses the last build when the source hasn't changed. Your team can
 try changes on a phone without a TestFlight upload.
 
+## Screenshots
+
+<a href="docs/screenshots/catalog.png"><img src="docs/screenshots/catalog.png" alt="App catalog" width="175"></a>
+<a href="docs/screenshots/app-details.png"><img src="docs/screenshots/app-details.png" alt="App details and recent commits" width="175"></a>
+<a href="docs/screenshots/build-log.png"><img src="docs/screenshots/build-log.png" alt="Xcode build log" width="175"></a>
+<a href="docs/screenshots/install.png"><img src="docs/screenshots/install.png" alt="Install button for a ready build" width="175"></a>
+
 ## Setup
 
 Use a Mac with Xcode and Python 3.9 or newer. Sign in to Xcode with your
